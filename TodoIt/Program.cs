@@ -13,10 +13,10 @@ namespace TodoIt
             Console.Write($"{aPerson.FirstName}, {aPerson.LastName}");
 
             //Testa hämta värde personID
-            int dummy;
+            //int dummy;
             //dummy = Convert.ToInt32(aPerson.personalId); //KOMP.FEL: personalId kan inte nås pga protection-level privat
-            dummy = Convert.ToInt32(aPerson.PersonalId); //använder constructorn (stor bokstav) 
-            Console.WriteLine("\nId: " + dummy);
+            //dummy = Convert.ToInt32(aPerson.PersonalId); //använder constructorn (stor bokstav) 
+            //Console.WriteLine("\nId: " + dummy);
 
             //Testa tilldela värde personID
             //funkar via constructorn ovan, behöver ej testa

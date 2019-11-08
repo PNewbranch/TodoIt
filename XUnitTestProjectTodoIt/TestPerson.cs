@@ -1,11 +1,10 @@
 using System;
 using Xunit;
-using TodoIt.Model; //om förlag ej ges så har men ej satt ställt in att textprojektet har dependencies på det program man testar (i dett fall TodoIt)
-
+using TodoIt.Model;
 
 namespace XUnitTestProjectTodoIt
 {
-    public class UnitTest1
+    public class TestPerson
     {
 
         [Fact]
@@ -17,7 +16,8 @@ namespace XUnitTestProjectTodoIt
             string lastName = "Larsson";
 
             //Act
-            Person testPerson = new Person(personalId, firsName, lastName);
+            //TodoIt.Model.Person testPerson = new TodoIt.Model.Person(personalId, firsName, lastName);
+            Person testPerson = new Person(personalId, firsName, lastName); //using TodoIt.Model;
 
             //Asset
             Assert.NotNull(testPerson); //verifiera att testpersonen skapats
@@ -37,14 +37,14 @@ namespace XUnitTestProjectTodoIt
             string firsName = ""; //genererat fel, måste alltid tilldelas
             string lastName = "Larsson";
             //Tillkommande variabler för att kunna testa
-            Person testPerson = null;                       //Vi skapar ett objekt här för att sedan säkerställa att vi INTE skapt något ??Varför
+            TodoIt.Model.Person testPerson = null;                       //Vi skapar ett objekt här för att sedan säkerställa att vi INTE skapt något ??Varför
             string excpectedMsg = "Förnamn måste anges.";   //Förväntat felmeddelande min class skall ge  
             string errorMsg = "";                           //Variabel för att fånga upp felmeddelande från min klass
 
             //Act
             try
             {
-                testPerson = new Person(personalId, firsName, lastName);
+                testPerson = new TodoIt.Model.Person(personalId, firsName, lastName);
             }
             catch (Exception exception)
             {
@@ -64,14 +64,14 @@ namespace XUnitTestProjectTodoIt
             string firsName = "Lisa"; //genererat fel, måste alltid tilldelas
             string lastName = "";
             //Tillkommande variabler för att kunna testa
-            Person testPerson = null;                       //Vi skapar ett objekt här för att sedan säkerställa att vi INTE skapt något ??Varför
+            TodoIt.Model.Person testPerson = null;                       //Vi skapar ett objekt här för att sedan säkerställa att vi INTE skapt något ??Varför
             string excpectedMsg = "Efternamn måste anges.";   //Förväntat felmeddelande min class skall ge  
             string errorMsg = "";                           //Variabel för att fånga upp felmeddelande från min klass
 
             //Act
             try
             {
-                testPerson = new Person(personalId, firsName, lastName);
+                testPerson = new TodoIt.Model.Person(personalId, firsName, lastName);
             }
             catch (Exception exception)
             {
