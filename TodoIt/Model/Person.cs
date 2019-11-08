@@ -9,9 +9,20 @@ namespace TodoIt.Model
     public class Person  //Testprogram hittar ej klassen?? gör klassen publik (om inget access modifier finns är denna per automatik PRIVATE)
     {
 
-        private int personalId; //använder default get/set
+        private int personalId; 
         private string firstName;
         private string lastName;
+
+        public string PersonalId 
+        {
+            get //skall kunna hämta ett id 
+            {
+                return personalId.ToString();   //return är alltid string, måste därför göra om integern
+            }
+            //private set //användare skall aldring kunna sätta värdet (görs senare i uppgiften - automatgenereras)
+            //{
+            //}
+        }
 
         public string FirstName //metod för anpassad get/set
         {
@@ -52,9 +63,9 @@ namespace TodoIt.Model
         }
 
         public Person(int personalId, string firstName, string lastName)  //constructor med inparameterar från ANVÄNDAREN
-        {
+        {                                                                 //3/3 passing = tre tester som alla använder constructor
             this.personalId = personalId;   //här har vi ingen metod för propertys därför använder vi "this"
-            FirstName = firstName;          //kastar vi in värderna från användaren in i property-metoden
+            FirstName = firstName;          //STOR förstabokstav = här använder vi våra metoder/PROPERTYS (input är våra värden från pgm:et vi testar 
             LastName = lastName;
         }
 
