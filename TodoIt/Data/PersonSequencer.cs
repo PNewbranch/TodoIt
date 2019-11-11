@@ -10,10 +10,10 @@ namespace TodoIt.Data
 
         static int nextPersonId()
         {
-            return personId--;
+            return personId++; 
         }
 
-        static void reset ()
+        static void resetPersonId ()
         {
             personId = 0;
         }

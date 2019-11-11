@@ -9,29 +9,33 @@ namespace XUnitTestProjectTodoIt
     public class TestPersonSeguencer
     {
 
-
         [Fact]
-        int personId = 0;
-
-        public int increasePersonSequencer (int personId)
+        public void IncreasePersonSequencer()
         {
-            return personId--;
+            //Arrange
+            int personId = 0;
 
+            //Act
+            personId++;
 
-        //[Fa]
-        //public void 
-        ////Arrange
-        //private static int personId = 0;
+            //Assert
+            Assert.Equal(1, personId);
 
-        ////Act
-        //static pers nextPersonalId()
-        //{
-        //    return nextPersonalId;
-        //}
-
-        ////Assert
         }
 
+        [Fact]
+        public void ResetPersonSequencer()
+        {
+            //Arrange
+            int personId = 2;
+
+            //Act
+            personId=0;
+
+            //Assert
+            Assert.Equal(0, personId);
+
+        }
 
     }
 }
