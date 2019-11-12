@@ -4,16 +4,16 @@ using System.Text;
 
 namespace TodoIt.Data
 {
-    class PersonSequencer
+    public class PersonSequencer
     {
         private static int personId;
 
-        static int nextPersonId()
+        public static int CreateNextPersonId()
         {
             return personId++; 
         }
 
-        static void resetPersonId ()
+        public static void ResetPersonId ()
         {
             personId = 0;
         }

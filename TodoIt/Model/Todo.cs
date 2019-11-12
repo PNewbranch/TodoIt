@@ -6,26 +6,15 @@ namespace TodoIt.Model
 {
     public class Todo
     {
-        private int todoId;
+        public readonly int todoId; //**här behöver vi ingen Property (klassen Person har annan lösning för att hantera "readonly", en Property utan set
         private string description;
         private bool done;
         private Person assignee;
 
-        //public int TodoId
-        //{
-        //    get //skall kunna hämta ett id 
-        //    {
-        //        return todoId;   //return är alltid string, måste därför göra om integern
-        //    }
-        //    private set //användare skall aldring kunna sätta värdet (görs senare i uppgiften - automatgenereras)
-        //    {
-        //    }
-        //}
 
         public Todo(int todoId, string description) //två inparameterar vid anrop
         {
-            this.todoId = todoId;     //denna rad anvender inte fältets propertymetod
-            //TodoId = todoId;            //här använder vi fältets propertymetod
+            this.todoId = todoId;           //**denna rad använder inte fältets propertymetod
             this.description = description;
         }
 

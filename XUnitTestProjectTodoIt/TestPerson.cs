@@ -16,18 +16,21 @@ namespace XUnitTestProjectTodoIt
             string lastName = "Larsson";
 
             //Act
-            //TodoIt.Model.Person testPerson = new TodoIt.Model.Person(personalId, firsName, lastName);
-            Person testPerson = new Person(personalId, firsName, lastName); //using TodoIt.Model;
+            Person testPerson = new Person(personalId, firsName, lastName); //using TodoIt.Model överst innebär att vi skulle kunna ta bort det på denna rad
 
             //Asset
             Assert.NotNull(testPerson); //verifiera att testpersonen skapats
         }
+
+
 
         //[Fact]
         //public void PersonalIdfGetOK() //Vi vet redan att detta funker genom test ovan
 
         //[Fact]
         //public void PersonalIdfSetNotAllowedOK() //Detta går inte att testa då man SKALL få kompileringsfel (private)
+
+
 
         [Fact]
         public void CreatePersonFirstNameNotOK()
@@ -37,14 +40,14 @@ namespace XUnitTestProjectTodoIt
             string firsName = ""; //genererat fel, måste alltid tilldelas
             string lastName = "Larsson";
             //Tillkommande variabler för att kunna testa
-            TodoIt.Model.Person testPerson = null;                       //Vi skapar ett objekt här för att sedan säkerställa att vi INTE skapt något ??Varför
+            Person testPerson = null;                       //Vi skapar ett tomt null-objekt - sedan kör vi en "new Person" på den - behöver vi verkligen detta steg?
             string excpectedMsg = "Förnamn måste anges.";   //Förväntat felmeddelande min class skall ge  
             string errorMsg = "";                           //Variabel för att fånga upp felmeddelande från min klass
 
             //Act
             try
             {
-                testPerson = new TodoIt.Model.Person(personalId, firsName, lastName);
+                testPerson = new Person(personalId, firsName, lastName);
             }
             catch (Exception exception)
             {
@@ -61,17 +64,17 @@ namespace XUnitTestProjectTodoIt
         {
             //Arrange
             int personalId = 1;
-            string firsName = "Lisa"; //genererat fel, måste alltid tilldelas
-            string lastName = "";
+            string firsName = "Lisa"; 
+            string lastName = ""; //genererat fel, måste alltid tilldelas
             //Tillkommande variabler för att kunna testa
-            TodoIt.Model.Person testPerson = null;                       //Vi skapar ett objekt här för att sedan säkerställa att vi INTE skapt något ??Varför
+            Person testPerson = null;                         //Vi skapar ett tomt objekt här för att sedan säkerställa att vi INTE skapt något ??Varför
             string excpectedMsg = "Efternamn måste anges.";   //Förväntat felmeddelande min class skall ge  
-            string errorMsg = "";                           //Variabel för att fånga upp felmeddelande från min klass
+            string errorMsg = "";                             //Variabel för att fånga upp felmeddelande från min klass
 
             //Act
             try
             {
-                testPerson = new TodoIt.Model.Person(personalId, firsName, lastName);
+                testPerson = new Person(personalId, firsName, lastName);
             }
             catch (Exception exception)
             {

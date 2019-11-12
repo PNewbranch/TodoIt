@@ -1,8 +1,8 @@
 ﻿using System;
-//using System.Collections.Generic;
-//using System.Text;
-using TodoIt.Model;
 using Xunit;
+using TodoIt.Model;
+using TodoIt.Data;
+
 
 namespace XUnitTestProjectTodoIt
 {
@@ -13,28 +13,30 @@ namespace XUnitTestProjectTodoIt
         public void IncreasePersonSequencer()
         {
             //Arrange
-            int personId = 0;
+            int personId1 = 0;
+            int personId2 = 0;
 
             //Act
-            personId++;
+            personId1 = PersonSequencer.CreateNextPersonId(); //testa OBJEKTET PersonSequenser!!!
+            personId2 = PersonSequencer.CreateNextPersonId();
 
             //Assert
-            Assert.Equal(1, personId);
-
+            Assert.True(personId1 < personId2); //där kan förekomma parallella testprocessers om påverkar räknaren MEN vi vet att dessa två skapas i samma procress varav 1 ska bli < 2
         }
 
         [Fact]
         public void ResetPersonSequencer()
         {
             //Arrange
-            int personId = 2;
+            int personId3 = PersonSequencer.CreateNextPersonId(); //initialt - skapa id1 som får värdet 0
+            int personId4 = PersonSequencer.CreateNextPersonId(); //och id2 med värde 1
 
             //Act
-            personId=0;
+            PersonSequencer.ResetPersonId(); //räknaren nollställs
+            int personId5 = PersonSequencer.CreateNextPersonId(); //id3 blir då 0
 
             //Assert
-            Assert.Equal(0, personId);
-
+            Assert.True(personId5 < personId4); //id3 skall nu vara mindre än id 2
         }
 
     }
