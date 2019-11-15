@@ -10,7 +10,7 @@ namespace TodoIt.Data
 
         public static int CreateNextTodoId()
         {
-            return todoId++;
+            return ++todoId; 
         }
 
         public static void ResetTodoId()
