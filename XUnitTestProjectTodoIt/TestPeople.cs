@@ -11,17 +11,7 @@ namespace XUnitTestProjectTodoIt
     {
 
         [Fact]
-        public void CreateEmptyPersonArrayOk ()
-        {
-            //Arrange
-            //Act
-            People people = new People(); //denna skall väl skapa en array by default?
-            //Asset
-            Assert.NotNull(people); //verifiera att testpersonen skapats
-        }
-
-        [Fact]
-        public void CheckPersonArraySize()
+        public void TestSize()
         {
             //Arrange
             int sizeBefore = 0;
@@ -63,17 +53,32 @@ namespace XUnitTestProjectTodoIt
             int testId = 0;
             People.CreateANewPerson("Fia", "Flitg");                        //säkerställ att där finns personer i arrayen
 
-            Person testPerson1 = People.CreateANewPerson("Emma", "Hemma");  //få tag på ett id
+            Person testPerson = People.CreateANewPerson("Emma", "Hemma");  //få tag på ett id
+            testId = testPerson.PersonalId;
 
             People.CreateANewPerson("Gus", "Grus");                         //skapa lite mer testmaterial iiii Arrayen
             People.CreateANewPerson("Fredrik", "Frys");
-            testId = testPerson1.PersonalId;            
-            
+      
             //Act
-            
   
             //Asset
-            Assert.NotNull(People.FindById(testId));                  
+            Assert.Equal(testPerson, People.FindById(testId));                  
+        }
+
+        [Fact]
+        public void TestClear()
+        {
+            //Arrange
+            People.CreateANewPerson("Harald", "Hurtig");                        //säkerställ att där finns personer i arrayen
+
+            //Act
+            People.Clear();
+            People.FindById(0);
+
+
+
+            //Asset
+            Assert.Empty(Person);
         }
 
     }

@@ -24,25 +24,17 @@ namespace TodoIt.Data
 
         public static Person FindById(int findPersonId) //input ett id, output det specifika objektet
         {
-            //Eftersom jag befinner mig i en ARRAY av OBJECT så måste jag gå igenom ALLA och kika efter om resp objekts specifika fält har det aktuella värdet
-            //(går att lösa genom avancerad programmering - men där är jag inte nu
-
-            // int searchResult = Array.IndexOf(Person[] arrayOfPersons, Person. findPersonId);
-
-            if (Array.IndexOf(arrayOfPersons, findPersonId) > -1) {
-                return arrayOfPersons[findPersonId]; //om träff, skicka objektet
-                Array.IndexOf()
-            }
-            else
+            //Eftersom jag befinner mig i en ARRAY av OBJECT så måste jag gå igenom ALLA och kika efter om resp objekts specifika (går att lösa genom avancerad programmering - men där är jag inte nu)
+            foreach (var Person in arrayOfPersons)
             {
-                return null;
+                if (Person.PersonalId == findPersonId)
+                    return Person; //om träff, skicka objektet
             }
+            return null;
         }
 
         public static Person CreateANewPerson(string firstName, string lastName) //skaper en ny person, lägg till personen i personarrayen, retunerar personen
         {
-
-
             int personId = PersonSequencer.CreateNextPersonId();                        //hämta nytt id
             Person person = new Person(personId, firstName, lastName);                  //skapa person, använd nya id:
             Person[] arrayOfPersonsCopy = new Person[arrayOfPersons.Length + 1];        //skapa en array som är en "box" större
@@ -56,10 +48,14 @@ namespace TodoIt.Data
             return person;  //retunera skapade personen
         }
 
-        public static void Clear() //static för att bli synlig
+        public static Person Clear() //static för att bli synlig
         {
-            Person[] personArray = new Person[0]; //skapar en ny array med 0 objekt = tom
+            Array.Clear(arrayOfPersons, 0, arrayOfPersons.Length);
+            return arrayOfPersons[1];
+
         }
+
+
 
 
     }
