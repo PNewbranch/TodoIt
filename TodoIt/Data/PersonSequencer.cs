@@ -10,7 +10,7 @@ namespace TodoIt.Data
 
         public static int CreateNextPersonId()
         {
-            return ++personId; //första loopen   ++före ger 1 ++efter ger 0
+            return ++personId; //första loopen: ++före ger 1 ++efter ger 0
         }
 
         public static void ResetPersonId ()

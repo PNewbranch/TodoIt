@@ -6,25 +6,22 @@ using System.Text;
 
 namespace TodoIt.Model
 {
-    public class Person  //Testprogram hittar ej klassen?? gör klassen publik (om inget access modifier finns är denna per automatik PRIVATE)
+    public class Person  //om inget access modifier finns är denna per automatik PRIVATE)
     {
-
-        private int personalId;     //**private readonly int personalId; Detta är ett alternativ till Propertymetod UTAN set.
+        private readonly int personalId; 
         private string firstName;
         private string lastName;
 
-        public int PersonalId //**har ändrat denna från string samt tagit bort konvertering i returnen
+        public int PersonalId 
         {
-            get //skall kunna hämta ett id 
+            get 
             {
-                return personalId;   //return är alltid string, måste därför göra om integern
+                return personalId;
             }
-            //private set //användare skall aldring kunna sätta(set) värdet
-            //{
-            //}
+            //Saknar SET
         }
 
-        public string FirstName //metod för anpassad get/set
+        public string FirstName 
         {
             get
             {
@@ -63,10 +60,9 @@ namespace TodoIt.Model
         }
 
         public Person(int personalId, string firstName, string lastName)  //constructor med inparameterar från ANVÄNDAREN
-        {                                                                 //3/3 passing = tre tester som alla använder constructor
-            this.personalId = personalId;   //**här har vi INGEN metod för propertys därför använder vi "this" (Propertyn används vid "get")
-
-            FirstName = firstName;          //STOR förstabokstav = här använder vi våra metoder/PROPERTYS (input är våra värden från pgm:et vi testar 
+        {                                                                 
+            this.personalId = personalId;   //saknar metod för propertys därför använder vi "this"
+            FirstName = firstName;          //STOR förstabokstav = använder PROPERTYS-metoden 
             LastName = lastName;
         }
 

@@ -11,7 +11,6 @@ namespace TodoIt.Model
         private bool done;
         private Person assignee;
 
-
         public Todo(int todoId, string description) //två inparameterar vid anrop
         {
             this.todoId = todoId;           //**denna rad använder inte fältets propertymetod

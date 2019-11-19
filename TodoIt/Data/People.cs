@@ -10,19 +10,19 @@ namespace TodoIt.Data
     public class People ///OBS glöm inte public!!  //DETTA ÄR DATA(alltså objekt) - DÄR MAN ANVÄNDER MODEL(KLASSER)
     {
 
-        private static Person[] arrayOfPersons = new Person[0]; //array med personer
+        public static Person[] arrayOfPersons = new Person[0]; //array med personer
 
-        public static int Size() //arrayen finns tillgänglig i klassen - alltså ingen input nödvändig, output integer                             
+        public static int Size() //arrayen finns tillgänglig i klassen - alltså ingen input nödvändig, RETURN integer                             
         {
             return arrayOfPersons.Length; //svarar med integer innehållande arrayens längd
         }
 
-        public static Person[] FindAll() //har access till klassen, output hela arrayen
+        public static Person[] FindAll() //har access till klassen, RETURN hela arrayen
         {
             return arrayOfPersons; //svarar med ALLA personer i arrayen
         }
 
-        public static Person FindById(int findPersonId) //input ett id, output det specifika objektet
+        public static Person FindById(int findPersonId) //input ett id, RETURN det specifika objektet
         {
             //Eftersom jag befinner mig i en ARRAY av OBJECT så måste jag gå igenom ALLA och kika efter om resp objekts specifika (går att lösa genom avancerad programmering - men där är jag inte nu)
             foreach (var Person in arrayOfPersons)
@@ -33,7 +33,7 @@ namespace TodoIt.Data
             return null;
         }
 
-        public static Person CreateANewPerson(string firstName, string lastName) //skaper en ny person, lägg till personen i personarrayen, retunerar personen
+        public static Person CreateANewPerson(string firstName, string lastName) //skaper en ny person, lägg till personen i personarrayen, RETURN personen
         {
             int personId = PersonSequencer.CreateNextPersonId();                        //hämta nytt id
             Person person = new Person(personId, firstName, lastName);                  //skapa person, använd nya id:
@@ -48,11 +48,9 @@ namespace TodoIt.Data
             return person;  //retunera skapade personen
         }
 
-        public static Person Clear() //static för att bli synlig
+        public static void Clear() //void = ingen RETURN
         {
             Array.Clear(arrayOfPersons, 0, arrayOfPersons.Length);
-            return arrayOfPersons[1];
-
         }
 
 

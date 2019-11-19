@@ -13,30 +13,28 @@ namespace XUnitTestProjectTodoIt
         public void IncreasePersonSequencer()
         {
             //Arrange
-            int personId1 = 0;
-            int personId2 = 0;
+            int personId1 = PersonSequencer.CreateNextPersonId(); 
+            int personId2 = PersonSequencer.CreateNextPersonId();
 
             //Act
-            personId1 = PersonSequencer.CreateNextPersonId(); //testa OBJEKTET PersonSequenser!!!
-            personId2 = PersonSequencer.CreateNextPersonId();
 
             //Assert
-            Assert.True(personId1 < personId2); //där kan förekomma parallella testprocessers om påverkar räknaren MEN vi vet att dessa två skapas i samma procress varav 1 ska bli < 2
+            Assert.True(personId1 < personId2); 
         }
 
         [Fact]
         public void ResetPersonSequencer()
         {
             //Arrange
-            int personId3 = PersonSequencer.CreateNextPersonId(); //initialt - skapa id1 som får värdet 0
-            int personId4 = PersonSequencer.CreateNextPersonId(); //och id2 med värde 1
+            int personId3 = PersonSequencer.CreateNextPersonId();
+            int personId4 = PersonSequencer.CreateNextPersonId();
 
             //Act
             PersonSequencer.ResetPersonId(); //räknaren nollställs
-            int personId5 = PersonSequencer.CreateNextPersonId(); //id3 blir då 0
+            int personId5 = PersonSequencer.CreateNextPersonId(); 
 
             //Assert
-            Assert.True(personId5 < personId4); //id3 skall nu vara mindre än id 2
+            Assert.True(personId5 == 1); 
         }
 
     }

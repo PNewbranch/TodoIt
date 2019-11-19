@@ -15,12 +15,10 @@ namespace XUnitTestProjectTodoIt
         public void IncreaseTodoSequencer() //vi testar klassen TodoSequencer, att räkna upp
         {
             //Arrange
-            int todoId1 = 0;
-            int todoId2 = 0;
+            int todoId1 = TodoSequencer.CreateNextTodoId();  
+            int todoId2 = TodoSequencer.CreateNextTodoId();
 
             //Act
-            todoId1 = TodoSequencer.CreateNextTodoId();  
-            todoId2 = TodoSequencer.CreateNextTodoId();
 
             //Assert
             Assert.True(todoId1 < todoId2);
@@ -38,7 +36,7 @@ namespace XUnitTestProjectTodoIt
             int todoId5 = TodoSequencer.CreateNextTodoId();
 
             //Assert
-            Assert.True(todoId5 < todoId4);
+            Assert.True(todoId5 == 1);
         }
 
     }
