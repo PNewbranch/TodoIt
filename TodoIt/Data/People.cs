@@ -10,7 +10,7 @@ namespace TodoIt.Data
     public class People 
     {
 
-        public static Person[] arrayOfPersons = new Person[0]; 
+        private static Person[] arrayOfPersons = new Person[0]; 
 
         public static int Size()            
         {
@@ -47,7 +47,8 @@ namespace TodoIt.Data
 
         public static void Clear() //void = ingen RETURN
         {
-            Array.Clear(arrayOfPersons, 0, arrayOfPersons.Length);
+            Array.Clear(arrayOfPersons, 0, arrayOfPersons.Length);  //resnar arrayens boxar
+            PersonSequencer.ResetPersonId();                        //nollställer ID-räknaren 
         }
 
     }

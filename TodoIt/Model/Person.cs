@@ -61,7 +61,7 @@ namespace TodoIt.Model
 
         public Person(int personalId, string firstName, string lastName)  //constructor med inparameterar från ANVÄNDAREN
         {                                                                 
-            this.personalId = personalId;   //saknar metod för propertys därför använder vi "this"
+            this.personalId = personalId;   //saknar metod för property setr - därför använder vi "this"?
             FirstName = firstName;          //STOR förstabokstav = använder PROPERTYS-metoden 
             LastName = lastName;
         }

@@ -9,57 +9,47 @@ namespace TodoIt.Data
 {
     public class TodoItems
     {
-        public static Todo[] arrayOfItems = new Todo[0]; 
+        public static Todo[] arrayOfTodoItems = new Todo[0]; 
 
         public static int Size()  
         {
-            return arrayOfItems.Length; 
+            return arrayOfTodoItems.Length; 
         }
 
         public static Todo[] FindAll()
         {
-            return arrayOfItems;
+            return arrayOfTodoItems;
         }
 
         public static Todo FindById(int findTodoId)
         {
-            foreach (var Todo in arrayOfItems)
+            foreach (var Todo in arrayOfTodoItems)
             {
-                if (Todo.todoId == findTodoId)
+                if (Todo.TodoId == findTodoId)
                     return Todo;
             }
             return null;
         }
 
-        public static Todo CreateANewPerson(string firstName, string lastName) //skaper en ny person, lägg till personen i personarrayen, RETURN personen
+        public static Todo CreateANewTodoItem(string description)
         {
-            int todoId = TodoSequencer.CreateNextTodoId();                        //hämta nytt id
-            Todo todoItem = new Todo(todoId, firstName, lastName);                  //skapa person, använd nya id:
-            Person[] arrayOfTodoitemsCopy = new Todo[arrayOfTodoItems.Length + 1];        //skapa en array som är en "box" större
-            Array.Copy(arrayOfPersons, arrayOfPersonsCopy, arrayOfPersons.Length);      //kopiera över gamla arrayen (finns flera overloads)
-                                                                                        //källa, destination, antal element att kopira 
+            int todoId = TodoSequencer.CreateNextTodoId(); 
+            Todo todo = new Todo(todoId, description); 
 
-            arrayOfPersonsCopy[arrayOfPersonsCopy.Length - 1] = person;                 //lägg till nyligen skapade personen - sista platsen skall vara tom
-            arrayOfPersons = arrayOfPersonsCopy;                                        //här SKRIVER VI ÖVER - ej kopierar
-            return todo; //return arrayOfPersons[arrayOfPersons.Length - 1]; //ger samma som nedan
+            Todo[] arrayOfTodoItemsCopy = new Todo[arrayOfTodoItems.Length + 1];           //skapa en array som är en "box" större
+            Array.Copy(arrayOfTodoItems, arrayOfTodoItemsCopy, arrayOfTodoItems.Length);   //kopiera över gamla arrayen (finns flera overloads)
+                                                                                           //källa, destination, antal element att kopira 
+
+            arrayOfTodoItemsCopy[arrayOfTodoItemsCopy.Length - 1] = todo;                   //lägg till nyligen skapade objektet - sista platsen skall vara tom
+            arrayOfTodoItems = arrayOfTodoItemsCopy;                                        //här SKRIVER VI ÖVER - ej kopierar
+            return todo; //return arrayOfTodoItems[arrayOfTodoItems.Length - 1]; //ger samma som koden före
         }
 
-        //public static Person CreateANewPerson(string firstName, string lastName)        //skaper en ny person, lägg till personen i personarrayen, RETURN personen
-        //{
-        //    int personId = PersonSequencer.CreateNextPersonId();                        //hämta nytt id
-        //    Person person = new Person(personId, firstName, lastName);                  //skapa person, använd nya id:
-        //    Person[] arrayOfPersonsCopy = new Person[arrayOfPersons.Length + 1];        //skapa en array som är en "box" större
-        //    Array.Copy(arrayOfPersons, arrayOfPersonsCopy, arrayOfPersons.Length);      //kopiera över gamla arrayen (finns flera overloads)
-        //                                                                                //källa, destination, antal element att kopira 
-
-        //    arrayOfPersonsCopy[arrayOfPersonsCopy.Length - 1] = person;                 //lägg till nyligen skapade personen - sista platsen skall vara tom
-        //    arrayOfPersons = arrayOfPersonsCopy;                                        //här SKRIVER VI ÖVER - ej kopierar
-        //    return person; //return arrayOfPersons[arrayOfPersons.Length - 1]; //ger samma som den till vänster
-        //}
 
         public static void Clear()
         {
-            Array.Clear(arrayOfItems, 0, arrayOfItems.Length);
+            Array.Clear(arrayOfTodoItems, 0, arrayOfTodoItems.Length);  //resnar arrayens boxar
+            TodoSequencer.ResetTodoId();                                //nollställer ID-räknaren 
         }
 
     }
