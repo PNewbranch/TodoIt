@@ -52,5 +52,32 @@ namespace TodoIt.Data
             TodoSequencer.ResetTodoId();                                //nollställer ID-räknaren 
         }
 
-    }
+
+        public static Todo[] FindByDoneStatus(bool done)
+        {
+
+            Todo[] arrayOfDone = new Todo[0];
+            int copyCounter = 0;
+
+            for (int i = 0; i < arrayOfTodoItems.Length; i++)
+            {
+                if (arrayOfTodoItems[i].done == true) {
+                    copyCounter++;
+                    arrayOfDone[copyCounter] = new Todo[arrayOfTodoItems[i];
+
+                    Array.Copy(arrayOfTodoItems[i], arrayOfDone, 0, copyCounter);
+                }
+
+            }
+
+            return arrayOfDone;
+        }
+
+
+
+
+
+
+
+}
 }

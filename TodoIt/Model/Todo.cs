@@ -8,7 +8,7 @@ namespace TodoIt.Model
     {
         private readonly int todoId; //**här behöver vi ingen Property (klassen Person har annan lösning för att hantera "readonly", en Property utan set
         private string description;
-        private bool done;
+        public bool done;
         private Person assignee;
 
         public int TodoId
