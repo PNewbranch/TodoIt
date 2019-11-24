@@ -20,9 +20,9 @@ namespace XUnitTestProjectTodoIt
 
             //Act
             sizeBefore = TodoItems.Size();
-            TodoItems.CreateANewTodoItem("Damma");
-            TodoItems.CreateANewTodoItem("Diska");
-            TodoItems.CreateANewTodoItem("Laga mat");
+            TodoItems.CreateANewTodoItem("Damma", false, null);
+            TodoItems.CreateANewTodoItem("Diska", false, null);
+            TodoItems.CreateANewTodoItem("Laga mat", false, null);
             sizeAfter = TodoItems.Size();
 
             //Asset
@@ -34,8 +34,8 @@ namespace XUnitTestProjectTodoIt
         {
             //Arrange
             int size = 0;
-            TodoItems.CreateANewTodoItem("Byt till vinterdäck");
-            TodoItems.CreateANewTodoItem("Damma");
+            TodoItems.CreateANewTodoItem("Byt till vinterdäck", false, null);
+            TodoItems.CreateANewTodoItem("Damma", true, null);
 
             //Act
             size = TodoItems.Size();                           
@@ -50,13 +50,13 @@ namespace XUnitTestProjectTodoIt
         {
             //Arrange
             int testId = 0;
-            TodoItems.CreateANewTodoItem("Stryka");
+            TodoItems.CreateANewTodoItem("Stryka", false, null);
 
-            Todo testTodo = TodoItems.CreateANewTodoItem("Handla"); //få tag på ett id
+            Todo testTodo = TodoItems.CreateANewTodoItem("Handla", false, null); //få tag på ett id
             testId = testTodo.TodoId;
 
-            TodoItems.CreateANewTodoItem("Klippa gräs");
-            TodoItems.CreateANewTodoItem("Fäll träd");
+            TodoItems.CreateANewTodoItem("Klippa gräs", false, null);
+            TodoItems.CreateANewTodoItem("Fäll träd", false, null);
 
             //Act
 
@@ -72,35 +72,56 @@ namespace XUnitTestProjectTodoIt
             int arrayLengthAfter = 0;
 
             //Act
-            Todo newTodo = TodoItems.CreateANewTodoItem("Baka kaka");
+            Todo newTodo = TodoItems.CreateANewTodoItem("Baka kaka", false, null);
             arrayLengthAfter = TodoItems.Size();
 
             //Asset
             Assert.True(newTodo != null && arrayLengthAfter == arrayLengthBefore + 1); 
         }
 
+        //[Fact]
+        //public void TestClear() //notera TÖMMER alla boxar, tar ej bort dem
+        //{
+        //    //Arrange
+        //    TodoItems.CreateANewTodoItem("Skura golvet", false, null);
+        //    bool stillValuesInArray = false;
+
+        //    //Act
+        //    TodoItems.Clear();
+        //    Todo[] copyOfArray = TodoItems.FindAll(); 
+        //    foreach (var Todo in copyOfArray) 
+        //    {
+        //        if (Todo != null)
+        //        {
+        //            stillValuesInArray = true;
+        //            break;
+        //        }
+        //    }
+
+        //    //Asset
+        //    Assert.True(stillValuesInArray == false);
+        //}
+
         [Fact]
-        public void TestClear() //notera TÖMMER alla boxar, tar ej bort dem
+        public void TestFindByDoneStatus() 
         {
             //Arrange
-            TodoItems.CreateANewTodoItem("Skura golvet");
-            bool stillValuesInArray = false;
+            int personId1 = PersonSequencer.CreateNextPersonId();
+            Person TestPerson1 = new Person(personId1, "Villiam", "Vilde");
+            int todoId1 = TodoSequencer.CreateNextTodoId();
+            TodoItems.CreateANewTodoItem("HAR Rivit uhuset", true, TestPerson1);
 
-            //Act
-            TodoItems.Clear();
-            Todo[] copyOfArray = TodoItems.FindAll(); 
-            foreach (var Todo in copyOfArray) 
-            {
-                if (Todo != null)
-                {
-                    stillValuesInArray = true;
-                    break;
-                }
-            }
+            int personId2 = PersonSequencer.CreateNextPersonId();
+            Person TestPerson2 = new Person(personId2, "Wilma", "Weedervärdig");
+            int todoId2 = TodoSequencer.CreateNextTodoId();
+            TodoItems.CreateANewTodoItem("HAR Rivit garaget", true, null);
+
+            Todo[] doneTodo = TodoItems.FindByDoneStatus();
 
             //Asset
-            Assert.True(stillValuesInArray == false);
+            Assert.True(doneTodo.Length > 1);
         }
+
 
     }
 }

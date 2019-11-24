@@ -20,12 +20,12 @@ namespace TodoIt.Model
             //Saknar SET
         }
 
-        public Todo(int todoId, string description) //två inparameterar vid anrop
+        public Todo(int todoId, string description, bool status, Person assignee) 
         {
-            this.todoId = todoId;               //finns i propertys-metoder
-            this.description = description;     //finns i propertys-metoder
-            this.done = false;
-            this.assignee = null;
+            this.todoId = todoId;  
+            this.description = description; 
+            this.done = status;
+            this.assignee = assignee;
         }
 
     }

@@ -31,10 +31,10 @@ namespace TodoIt.Data
             return null;
         }
 
-        public static Todo CreateANewTodoItem(string description)
+        public static Todo CreateANewTodoItem(string description, bool status, Person asignee)
         {
             int todoId = TodoSequencer.CreateNextTodoId(); 
-            Todo todo = new Todo(todoId, description); 
+            Todo todo = new Todo(todoId, description, status, asignee); 
 
             Todo[] arrayOfTodoItemsCopy = new Todo[arrayOfTodoItems.Length + 1];           //skapa en array som är en "box" större
             Array.Copy(arrayOfTodoItems, arrayOfTodoItemsCopy, arrayOfTodoItems.Length);   //kopiera över gamla arrayen (finns flera overloads)
@@ -53,31 +53,24 @@ namespace TodoIt.Data
         }
 
 
-        public static Todo[] FindByDoneStatus(bool done)
+        public static Todo[] FindByDoneStatus()
         {
-
-            Todo[] arrayOfDone = new Todo[0];
-            int copyCounter = 0;
-
+            //Todo[] arrayOfDone = new Todo[0];
+            int doneCounter = 0;
             for (int i = 0; i < arrayOfTodoItems.Length; i++)
             {
-                if (arrayOfTodoItems[i].done == true) {
-                    copyCounter++;
-                    arrayOfDone[copyCounter] = new Todo[arrayOfTodoItems[i];
 
-                    Array.Copy(arrayOfTodoItems[i], arrayOfDone, 0, copyCounter);
+                if (arrayOfTodoItems[i].done == true)
+                {
+                    Todo[] arrayOfDone = new Todo[doneCounter+1];  //lägger till en box - startar på 1
+                    //Todo[] arrayOfDone = new Todo[doneCounter + 1];  //lägger till en box - startar på 1
+                    Array.Copy(arrayOfTodoItems, i, arrayOfDone, arrayOfDone.Length-1, 1); //kopierar till nya boxen - startar på 0
                 }
 
             }
-
             return arrayOfDone;
         }
 
 
-
-
-
-
-
-}
+    }
 }
