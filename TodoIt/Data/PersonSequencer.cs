@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TodoIt.Data
+﻿namespace TodoIt.Data
 {
     public class PersonSequencer
     {
@@ -13,7 +9,7 @@ namespace TodoIt.Data
             return ++personId; //första loopen: ++före ger 1 ++efter ger 0
         }
 
-        public static void ResetPersonId ()
+        public static void ResetPersonId()
         {
             personId = 0;
         }

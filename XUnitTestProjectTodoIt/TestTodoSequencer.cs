@@ -1,7 +1,5 @@
-﻿using System;
+﻿using TodoIt.Data;
 using Xunit;
-using TodoIt.Model;
-using TodoIt.Data;
 //using System.Collections.Generic;
 //using System.Text;
 
@@ -15,7 +13,7 @@ namespace XUnitTestProjectTodoIt
         public void IncreaseTodoSequencer() //vi testar klassen TodoSequencer, att räkna upp
         {
             //Arrange
-            int todoId1 = TodoSequencer.CreateNextTodoId();  
+            int todoId1 = TodoSequencer.CreateNextTodoId();
             int todoId2 = TodoSequencer.CreateNextTodoId();
 
             //Act

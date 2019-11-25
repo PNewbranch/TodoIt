@@ -1,6 +1,6 @@
 using System;
-using Xunit;
 using TodoIt.Model;
+using Xunit;
 
 namespace XUnitTestProjectTodoIt
 {
@@ -11,7 +11,7 @@ namespace XUnitTestProjectTodoIt
         public void TestCreatePersonOK() //test constructor
         {
             //Arrange
-            Person testPerson = new Person(1, "Agda", "Analgam"); 
+            Person testPerson = new Person("Agda", "Analgam");
 
             //Act
 
@@ -31,7 +31,7 @@ namespace XUnitTestProjectTodoIt
             //Act
             try
             {
-                testPerson = new Person(2, "", "Berg");
+                testPerson = new Person("", "Berg");
             }
             catch (Exception exception)
             {
@@ -54,7 +54,7 @@ namespace XUnitTestProjectTodoIt
             //Act
             try
             {
-                testPerson = new Person(3, "Cesar", "");
+                testPerson = new Person("Cesar", "");
             }
             catch (Exception exception)
             {

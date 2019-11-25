@@ -1,7 +1,5 @@
-﻿using System;
+﻿using TodoIt.Data;
 using Xunit;
-using TodoIt.Model;
-using TodoIt.Data;
 
 
 namespace XUnitTestProjectTodoIt
@@ -13,13 +11,13 @@ namespace XUnitTestProjectTodoIt
         public void IncreasePersonSequencer()
         {
             //Arrange
-            int personId1 = PersonSequencer.CreateNextPersonId(); 
+            int personId1 = PersonSequencer.CreateNextPersonId();
             int personId2 = PersonSequencer.CreateNextPersonId();
 
             //Act
 
             //Assert
-            Assert.True(personId1 < personId2); 
+            Assert.True(personId1 < personId2);
         }
 
         [Fact]
@@ -31,10 +29,10 @@ namespace XUnitTestProjectTodoIt
 
             //Act
             PersonSequencer.ResetPersonId(); //räknaren nollställs
-            int personId5 = PersonSequencer.CreateNextPersonId(); 
+            int personId5 = PersonSequencer.CreateNextPersonId();
 
             //Assert
-            Assert.True(personId5 == 1); 
+            Assert.True(personId5 == 1);
         }
 
     }

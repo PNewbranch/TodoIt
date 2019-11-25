@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TodoIt.Data
+﻿namespace TodoIt.Data
 {
     public class TodoSequencer
     {
@@ -10,7 +6,7 @@ namespace TodoIt.Data
 
         public static int CreateNextTodoId()
         {
-            return ++todoId; 
+            return ++todoId;
         }
 
         public static void ResetTodoId()

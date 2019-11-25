@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using TodoIt.Model;
-using TodoIt.Data;
 
 namespace TodoIt.Data
 {
 
-    public class People 
+    public class People
     {
 
-        private static Person[] arrayOfPersons = new Person[0]; 
+        private static Person[] arrayOfPersons = new Person[0];
 
-        public static int Size()            
+        public static int Size()
         {
             return arrayOfPersons.Length;
         }
@@ -34,15 +31,13 @@ namespace TodoIt.Data
 
         public static Person CreateANewPerson(string firstName, string lastName)        //skaper en ny person, lägg till personen i personarrayen, RETURN personen
         {
-            int personId = PersonSequencer.CreateNextPersonId();                        //hämta nytt id
-            Person person = new Person(personId, firstName, lastName);                  //skapa person, använd nya id:
+            Person person = new Person(firstName, lastName);                            //skapa person, använd nya id:
             Person[] arrayOfPersonsCopy = new Person[arrayOfPersons.Length + 1];        //skapa en array som är en "box" större
             Array.Copy(arrayOfPersons, arrayOfPersonsCopy, arrayOfPersons.Length);      //kopiera över gamla arrayen (finns flera overloads)
-                       //källa, destination, antal element att kopira 
-                       
+
             arrayOfPersonsCopy[arrayOfPersonsCopy.Length - 1] = person;                 //lägg till nyligen skapade personen - sista platsen skall vara tom
-            arrayOfPersons = arrayOfPersonsCopy;                                        //här SKRIVER VI ÖVER - ej kopierar
-            return person; //return arrayOfPersons[arrayOfPersons.Length - 1]; //ger samma som den till vänster
+            arrayOfPersons = arrayOfPersonsCopy;  //funkar detta? måste jag inte förstora originalarrayen                                       //här SKRIVER VI ÖVER - ej kopierar
+            return person;                                                              //return arrayOfPersons[arrayOfPersons.Length - 1]; //ger samma som den till vänster
         }
 
         public static void Clear() //void = ingen RETURN

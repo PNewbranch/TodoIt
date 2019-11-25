@@ -1,6 +1,5 @@
-﻿using System;
+﻿using TodoIt.Model;
 using Xunit;
-using TodoIt.Model;
 //using System.Collections.Generic;
 //using System.Text;
 
@@ -13,13 +12,10 @@ namespace XUnitTestProjectTodoIt
         public void CreateTodoOK() //
         {
             //Arrange
-            int todoId = 1;
-            string description = "textmassa";
-            bool done = false;                                            //dessa behövs inte här                                
-            Person assignee = new Person(1, "Kalle", "Kula");
+            Person assignee = new Person("Sixten", "Blixen");
+            Todo testTodo = new Todo("Gräv din grav", false, assignee);
 
             ////Act
-            Todo testTodo = new Todo(todoId, description, done, assignee); //Construktorn har bara två av fälten som inparametrar
 
             //Asset
             Assert.NotNull(testTodo); //verifiera att testpersonen skapat

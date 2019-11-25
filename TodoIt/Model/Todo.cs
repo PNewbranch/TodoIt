@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using TodoIt.Data;
 
 namespace TodoIt.Model
 {
@@ -9,7 +7,7 @@ namespace TodoIt.Model
         private readonly int todoId; //**här behöver vi ingen Property (klassen Person har annan lösning för att hantera "readonly", en Property utan set
         private string description;
         public bool done;
-        private Person assignee;
+        public Person assignee;
 
         public int TodoId
         {
@@ -20,10 +18,10 @@ namespace TodoIt.Model
             //Saknar SET
         }
 
-        public Todo(int todoId, string description, bool status, Person assignee) 
+        public Todo(string description, bool status, Person assignee)
         {
-            this.todoId = todoId;  
-            this.description = description; 
+            this.todoId = TodoSequencer.CreateNextTodoId();
+            this.description = description;
             this.done = status;
             this.assignee = assignee;
         }

@@ -1,16 +1,12 @@
-﻿using System;
-using TodoIt.Model;
-using System.Threading;
-
-namespace TodoIt
+﻿namespace TodoIt
 {
     class Program
     {
         static void Main(string[] args)
         {
-////Använder CONSTRUCTORN för att skapa ett objekt - därmed slår mina propetys till (propertys testar i unitest)
-//Person aPerson = new Person(1, "Lisa", "Larsson");
-//Console.Write($"{aPerson.FirstName}, {aPerson.LastName}");
+            ////Använder CONSTRUCTORN för att skapa ett objekt - därmed slår mina propetys till (propertys testar i unitest)
+            //Person aPerson = new Person(1, "Lisa", "Larsson");
+            //Console.Write($"{aPerson.FirstName}, {aPerson.LastName}");
 
             //Testa hämta värde personID
             //int dummy;
