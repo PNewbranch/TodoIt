@@ -96,5 +96,28 @@ namespace XUnitTestProjectTodoIt
             Assert.True(stillValuesInArray == false);
         }
 
+
+
+
+        [Fact]
+        public void TestRemovePerson() //notera TÖMMER alla boxar, tar ej bort dem
+        {
+
+            //Arrange
+            People.CreateANewPerson("Moa", "Mu");
+
+            Person testPerson = People.CreateANewPerson("Noa", "No");   //få tag på ett id
+            int testId = testPerson.PersonalId;
+
+            People.CreateANewPerson("Orvar", "Or");
+
+            //Act 
+
+            People.RemovePerson(testId);
+
+            //Asset
+
+        }
+
     }
 }

@@ -46,5 +46,25 @@ namespace TodoIt.Data
             PersonSequencer.ResetPersonId();                        //nollställer ID-räknaren 
         }
 
+        public static void RemovePerson(int personId) //void = ingen RETURN
+        {
+            int counter = 0;
+            bool exists = false;
+
+            foreach (Person person in arrayOfPersons)
+            {
+                if (person.PersonalId == personId)
+                {
+                    exists = true;
+                    break;
+                }
+                else
+                    counter++;
+            }
+
+
+        }
+
+
     }
 }
