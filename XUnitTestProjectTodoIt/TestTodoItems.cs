@@ -6,7 +6,6 @@ namespace XUnitTestProjectTodoIt
 {
     public class TestTodoItems
     {
-
         [Fact]
         public void TestSize()
         {
@@ -38,26 +37,21 @@ namespace XUnitTestProjectTodoIt
             Assert.True(size == testTodoItemsArray.Length);
         }
 
+        [Fact]
+        public void TestFindById()
+        {
+            //Arrange
+            TodoItems.CreateANewTodoItem("Stryka", false, null);
+            Todo testTodo = TodoItems.CreateANewTodoItem("Handla", false, null);
+            int testId = testTodo.TodoId; //få tag på ett id
+            TodoItems.CreateANewTodoItem("Klippa gräs", false, null);
+            TodoItems.CreateANewTodoItem("Fäll träd", false, null);
 
-        //DENNA ÄR INTE AKTUELL EFTERSOM EN PERSON KAN HA FLERA TODO-OBJEKT - FINDEN SKALL SÅLEDES RETUNERA EN ARRAY
-        //[Fact]
-        //public void TestFindById()
-        //{
-        //    //Arrange
-        //    TodoItems.CreateANewTodoItem("Stryka", false, null);
+            //Act
 
-        //    Todo testTodo = TodoItems.CreateANewTodoItem("Handla", false, null);
-        //    int testId = testTodo.TodoId; //få tag på ett id
-
-        //    TodoItems.CreateANewTodoItem("Klippa gräs", false, null);
-        //    TodoItems.CreateANewTodoItem("Fäll träd", false, null);
-
-        //    //Act
-
-        //    //Asset
-        //    Assert.Equal(testTodo, TodoItems.FindById(testId));
-        //}
-
+            //Asset
+            Assert.Equal(testTodo, TodoItems.FindById(testId));
+        }
 
         [Fact]
         public void TestCreateANewTodo()
@@ -100,11 +94,12 @@ namespace XUnitTestProjectTodoIt
         public void TestFindByDoneStatusTrue()
         {
             //Arrange
-            Person TestPerson1 = new Person("Villiam", "Vilde");
-            TodoItems.CreateANewTodoItem("HAR rivit uhuset", true, TestPerson1);
-
-            Person TestPerson2 = new Person("Wilma", "Weedervärdig");
-            TodoItems.CreateANewTodoItem("HAR rivit garaget", true, null);
+            Person testPerson1 = new Person("Lena", "af Lång");
+            TodoItems.CreateANewTodoItem("HAR klippt håret", true, testPerson1);
+            TodoItems.CreateANewTodoItem("SKA klippa grannens hår", false, null);
+            Person testPerson2 = new Person("Karin", "af Kort");
+            TodoItems.CreateANewTodoItem("HAR kapat kostnader", true, testPerson2);
+            TodoItems.CreateANewTodoItem("SKA kapa grannens fru", false, testPerson2);
 
             //Act
             Todo[] doneTodo = TodoItems.FindByDoneStatus(true);
@@ -117,11 +112,12 @@ namespace XUnitTestProjectTodoIt
         public void TestFindByDoneStatusFalse()
         {
             //Arrange
-            Person TestPerson1 = new Person("Villiam", "Vilde");
-            TodoItems.CreateANewTodoItem("HAR rivit uhuset", true, TestPerson1);
-
-            Person TestPerson2 = new Person("Wilma", "Weedervärdig");
-            TodoItems.CreateANewTodoItem("HAR rivit garaget", true, null);
+            Person testPerson1 = new Person("Villiam", "Vilde");
+            TodoItems.CreateANewTodoItem("HAR rivit uhuset", true, testPerson1);
+            TodoItems.CreateANewTodoItem("SKA rivit garaget", false, null);
+            Person testPerson2 = new Person("Wilma", "Weedervärdig");
+            TodoItems.CreateANewTodoItem("HAR rivit grannes lekstuga", true, testPerson2);
+            TodoItems.CreateANewTodoItem("SKA riva potatis", false, testPerson2);
 
             //Act
             Todo[] doneTodo = TodoItems.FindByDoneStatus(false);
@@ -129,7 +125,6 @@ namespace XUnitTestProjectTodoIt
             //Asset
             Assert.True(doneTodo[0].done == false); 
         }
-
 
         [Fact]
         public void TestFindByAssigneePersonID()
@@ -147,7 +142,6 @@ namespace XUnitTestProjectTodoIt
             Assert.True(TestPerson == assigneeTodo[0].assignee && assigneeTodo.Length > 1); //vi skall ha minst två todo
         }
 
-
         [Fact]
         public void TestFindByAssigneePerson()
         {
@@ -163,6 +157,23 @@ namespace XUnitTestProjectTodoIt
             Assert.True(TestPerson == assigneeTodo[0].assignee && assigneeTodo.Length > 1); //vi skall ha minst två todo
         }
 
+        [Fact]
+        public void TestRemoveTodo() //notera TÖMMER alla boxar, tar ej bort dem
+        {
+            //Arrange
+            Person testPerson = new Person("Vera", "Velig");
+            TodoItems.CreateANewTodoItem("Vera HAR diskat", true, testPerson);
+            TodoItems.CreateANewTodoItem("Vera SKA damma", false, testPerson);
+            Todo testTodo = TodoItems.CreateANewTodoItem("Vera HAR virkat", true, testPerson);
+            int testId = testTodo.TodoId; //remove this
+            TodoItems.CreateANewTodoItem("Vera Har dammsugit", false, testPerson);
+
+            //Act 
+            TodoItems.RemoveTodo(testId);
+
+            //Asset
+            Assert.Null(TodoItems.FindById(testId));
+        }
 
     }
 }

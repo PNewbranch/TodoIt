@@ -46,12 +46,14 @@ namespace TodoIt.Data
             PersonSequencer.ResetPersonId();                        //nollställer ID-räknaren 
         }
 
-        public static void RemovePerson(int personId) //void = ingen RETURN
+
+        public static void RemovePerson(int personId)
         {
             int counter = 0;
             bool exists = false;
+            Person[] newArray = new Person[arrayOfPersons.Length - 1];
 
-            foreach (Person person in arrayOfPersons)
+            foreach (Person person in arrayOfPersons) //Finns annat sätt eller måste jag alltid "öppna" varje objekt?
             {
                 if (person.PersonalId == personId)
                 {
@@ -62,9 +64,12 @@ namespace TodoIt.Data
                     counter++;
             }
 
-
+            if (exists) {
+                Array.Copy(People.arrayOfPersons, 0, newArray, 0, counter);
+                Array.Copy(People.arrayOfPersons, counter+1, newArray, counter, People.arrayOfPersons.Length-counter-1);
+                arrayOfPersons = newArray; //Skriver över
+            }
         }
-
 
     }
 }

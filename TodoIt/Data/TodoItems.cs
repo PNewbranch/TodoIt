@@ -19,16 +19,15 @@ namespace TodoIt.Data
             return arrayOfTodoItems;
         }
 
-        //DENNA ÄR INTE AKTUELL EFTERSOM EN PERSON KAN HA FLERA TODO-OBJEKT - FINDEN SKALL SÅLEDES RETUNERA EN ARRAY
-        //public static Todo FindById(int findTodoId)
-        //{
-        //    foreach (var Todo in arrayOfTodoItems)
-        //    {
-        //        if (Todo.TodoId == findTodoId)
-        //            return Todo;
-        //    }
-        //    return null;
-        //}
+        public static Todo FindById(int findTodoId)
+        {
+            foreach (var Todo in arrayOfTodoItems)
+            {
+                if (Todo.TodoId == findTodoId)
+                    return Todo;
+            }
+            return null;
+        }
 
         public static Todo CreateANewTodoItem(string description, bool status, Person asignee)
         {
@@ -42,13 +41,11 @@ namespace TodoIt.Data
             return todo;                                                                    //return arrayOfTodoItems[arrayOfTodoItems.Length - 1]; //ger samma som koden före
         }
 
-
         public static void Clear()
         {
             Array.Clear(arrayOfTodoItems, 0, arrayOfTodoItems.Length);  //resnar arrayens boxar
             TodoSequencer.ResetTodoId();                                //nollställer ID-räknaren 
         }
-
 
         //public static Todo[] FindByDoneStatus()
         //{
@@ -62,12 +59,9 @@ namespace TodoIt.Data
         //            newArray[copyCounter] = arrayOfTodoItems[i]; //flytta över den hittade, börja på 0
         //            copyCounter++; //förbered för nästa överflytt
         //        }
-
         //    }
-
         //    Todo[] arrayToReturn = new Todo[copyCounter]; //skapa en anpassad array (lika stor som antal objekt)
         //    Array.Copy(newArray, 0, arrayToReturn, 0, copyCounter); //kopiera de överflyttade till nya anpassade arrayen
-
         //    return arrayToReturn;
         //}
 
@@ -85,18 +79,10 @@ namespace TodoIt.Data
                 }
 
             }
-
             Todo[] arrayToReturn = new Todo[copyCounter]; //skapa en anpassad array (lika stor som antal objekt)
             Array.Copy(newArray, 0, arrayToReturn, 0, copyCounter); //kopiera de överflyttade till nya anpassade arrayen
-
             return arrayToReturn;
         }
-
-
-
-
-
-
 
         public static Todo[] FindByAssignee(int personId)
         {
@@ -111,13 +97,10 @@ namespace TodoIt.Data
                     copyCounter++; //förbered för nästa överflytt
                 }
             }
-
             Todo[] arrayToReturn = new Todo[copyCounter]; //skapa en anpassad array (lika stor som antal objekt)
             Array.Copy(newArray, 0, arrayToReturn, 0, copyCounter); //kopiera de överflyttade till nya anpassade arrayen
-
             return arrayToReturn;
         }
-
 
         public static Todo[] FindByAssignee(Person person)
         {
@@ -132,13 +115,35 @@ namespace TodoIt.Data
                     copyCounter++; //förbered för nästa överflytt
                 }
             }
-
             Todo[] arrayToReturn = new Todo[copyCounter]; //skapa en anpassad array (lika stor som antal objekt)
             Array.Copy(newArray, 0, arrayToReturn, 0, copyCounter); //kopiera de överflyttade till nya anpassade arrayen
-
             return arrayToReturn;
         }
 
+        public static void RemoveTodo(int todoId)
+        {
+            int counter = 0;
+            bool exists = false;
+            Todo[] newArray = new Todo[arrayOfTodoItems.Length - 1];
+
+            foreach (Todo todo in arrayOfTodoItems) //Finns annat sätt eller måste jag alltid "öppna" varje objekt?
+            {
+                if (todo.TodoId == todoId)
+                {
+                    exists = true;
+                    break;
+                }
+                else
+                    counter++;
+            }
+
+            if (exists)
+            {
+                Array.Copy(TodoItems.arrayOfTodoItems, 0, newArray, 0, counter);
+                Array.Copy(TodoItems.arrayOfTodoItems, counter + 1, newArray, counter, TodoItems.arrayOfTodoItems.Length - counter - 1);
+                arrayOfTodoItems = newArray; //Skriver över
+            }
+        }
 
     }
 }
