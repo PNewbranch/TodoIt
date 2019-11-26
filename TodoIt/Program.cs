@@ -18,7 +18,7 @@
             //funkar via constructorn ovan, behöver ej testa
             //aPerson.PersonalId = 8; //Här sker tilldelning utanför constructorn - ger komp.fel då fältet är read only (fins ej heller någon property som trumfar read.only
 
-            System.Threading.Thread.Sleep(1000);
+            //System.Threading.Thread.Sleep(1000);
 
         }
     }

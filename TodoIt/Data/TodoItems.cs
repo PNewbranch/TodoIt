@@ -1,25 +1,23 @@
 ﻿using System;
 using TodoIt.Model;
-using TodoIt.Data;
-
 
 namespace TodoIt.Data
 {
     public class TodoItems
     {
-        public static Todo[] arrayOfTodoItems = new Todo[0];
+        public static Todo[] arrayOfTodoItems = new Todo[0]; //DB - skall senare kunna bytas ut av en Databas
 
-        public static int Size()
+        public int Size()
         {
             return arrayOfTodoItems.Length;
         }
 
-        public static Todo[] FindAll()
+        public Todo[] FindAll()
         {
             return arrayOfTodoItems;
         }
 
-        public static Todo FindById(int findTodoId)
+        public Todo FindById(int findTodoId)
         {
             foreach (var Todo in arrayOfTodoItems)
             {
@@ -29,7 +27,7 @@ namespace TodoIt.Data
             return null;
         }
 
-        public static Todo CreateANewTodoItem(string description, bool status, Person asignee)
+        public Todo CreateANewTodoItem(string description, bool status, Person asignee)
         {
             Todo todo = new Todo(description, status, asignee);
 
@@ -41,10 +39,10 @@ namespace TodoIt.Data
             return todo;                                                                    //return arrayOfTodoItems[arrayOfTodoItems.Length - 1]; //ger samma som koden före
         }
 
-        public static void Clear()
+        public void Clear()
         {
-            Array.Clear(arrayOfTodoItems, 0, arrayOfTodoItems.Length);  //resnar arrayens boxar
-            TodoSequencer.ResetTodoId();                                //nollställer ID-räknaren 
+            Array.Clear(arrayOfTodoItems, 0, arrayOfTodoItems.Length);
+            TodoSequencer.ResetTodoId();
         }
 
         //public static Todo[] FindByDoneStatus()
@@ -65,7 +63,7 @@ namespace TodoIt.Data
         //    return arrayToReturn;
         //}
 
-        public static Todo[] FindByDoneStatus(bool status)
+        public Todo[] FindByStatus(bool status)
         {
             Todo[] newArray = new Todo[arrayOfTodoItems.Length]; //utgå från en TVÅ lika stora arrayer - arrayen måste skapas UTANFÖR eventuella loopar så att den kan nås
 
@@ -84,7 +82,7 @@ namespace TodoIt.Data
             return arrayToReturn;
         }
 
-        public static Todo[] FindByAssignee(int personId)
+        public Todo[] FindByAssignee(int personId)
         {
             Todo[] newArray = new Todo[arrayOfTodoItems.Length]; //utgå från en TVÅ lika stora arrayer - arrayen måste skapas UTANFÖR eventuella loopar så att den kan nås
 
@@ -102,7 +100,7 @@ namespace TodoIt.Data
             return arrayToReturn;
         }
 
-        public static Todo[] FindByAssignee(Person person)
+        public Todo[] FindByAssignee(Person person)
         {
             Todo[] newArray = new Todo[arrayOfTodoItems.Length]; //utgå från en TVÅ lika stora arrayer - arrayen måste skapas UTANFÖR eventuella loopar så att den kan nås
 
@@ -120,7 +118,7 @@ namespace TodoIt.Data
             return arrayToReturn;
         }
 
-        public static void RemoveTodo(int todoId)
+        public void RemoveTodo(int todoId)
         {
             int counter = 0;
             bool exists = false;

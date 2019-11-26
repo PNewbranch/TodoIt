@@ -11,31 +11,30 @@ namespace XUnitTestProjectTodoIt
         public void TestSize()
         {
             //Arrange
-            int sizeBefore = 0;
-            int sizeAfter = 0;
+            People arrayOfPersonsV1 = new People(); //Skapa en ett OBJEKT så att man INTE går mot KLASSEN (förbered för DB-koppling) 
+            int sizeBefore = arrayOfPersonsV1.Size();
+            arrayOfPersonsV1.CreateANewPerson("Adan", "Adams");
+            arrayOfPersonsV1.CreateANewPerson("Carina", "Ceder");
+            arrayOfPersonsV1.CreateANewPerson("Duncan", "Duva");
 
             //Act
-            sizeBefore = People.Size();
-            People.CreateANewPerson("Adan", "Adams");
-            People.CreateANewPerson("Bertil", "Boo");
-            People.CreateANewPerson("Carina", "Ceder");
-            sizeAfter = People.Size();
-
+            
             //Asset
-            Assert.True(sizeAfter >= sizeBefore + 3);
+            Assert.True(arrayOfPersonsV1.Size() >= sizeBefore + 3);
         }
 
         [Fact]
         public void TestFindAll()
         {
             //Arrange
+            People arrayOfPersonsV1 = new People(); 
             int size = 0;
-            People.CreateANewPerson("David", "Duk");
-            People.CreateANewPerson("Emma", "Hemma");
+            arrayOfPersonsV1.CreateANewPerson("David", "Duk");
+            arrayOfPersonsV1.CreateANewPerson("Emma", "Hemma");
+            size = arrayOfPersonsV1.Size();  //hämta längden från original      
 
             //Act
-            size = People.Size();                           //hämta längden från original
-            Person[] testPersonArray = People.FindAll();    //skapa en lokal kopia
+            Person[] testPersonArray = arrayOfPersonsV1.FindAll();    //skapa en lokal kopia
 
             //Asset
             Assert.True(size == testPersonArray.Length);    //jämför dem
@@ -45,29 +44,29 @@ namespace XUnitTestProjectTodoIt
         public void TestFindById()
         {
             //Arrange
-            People.CreateANewPerson("Fia", "Flitig");
-
-            Person testPerson = People.CreateANewPerson("Emma", "Hemma");   //få tag på ett id
+            People arrayOfPersonsV1 = new People(); 
+            arrayOfPersonsV1.CreateANewPerson("Fia", "Flitig");
+            Person testPerson = arrayOfPersonsV1.CreateANewPerson("Emma", "Hemma");   //få tag på ett id
             int testId = testPerson.PersonalId;
-
-            People.CreateANewPerson("Gus", "Grus");
-            People.CreateANewPerson("Fredrik", "Frys");
+            arrayOfPersonsV1.CreateANewPerson("Gus", "Grus");
+            arrayOfPersonsV1.CreateANewPerson("Fredrik", "Frys");
 
             //Act
 
             //Asset
-            Assert.Equal(testPerson, People.FindById(testId));  //hämta version från original mha id och jämför med lokal
+            Assert.Equal(testPerson, arrayOfPersonsV1.FindById(testId));  //hämta version från original mha id och jämför med lokal
         }
 
         [Fact]
         public void TestCreateANewPerson()
         {
             //Arrange
-            int arrayLengthBefore = People.Size();
+            People arrayOfPersonsV1 = new People(); 
+            int arrayLengthBefore = arrayOfPersonsV1.Size();
 
             //Act
-            Person newPerson = People.CreateANewPerson("Rosita", "Roos"); //skapa central som kopieras(return) lokalt
-            int arrayLengthAfter = People.Size();
+            Person newPerson = arrayOfPersonsV1.CreateANewPerson("Rosita", "Roos"); //skapa central som kopieras(return) lokalt
+            int arrayLengthAfter = arrayOfPersonsV1.Size();
 
             //Asset
             Assert.True(newPerson != null && arrayLengthAfter == arrayLengthBefore + 1); //om lokal har värde om 
@@ -77,12 +76,13 @@ namespace XUnitTestProjectTodoIt
         public void TestClear() //notera TÖMMER alla boxar, tar ej bort dem
         {
             //Arrange
-            People.CreateANewPerson("Harald", "Hurtig");
+            People arrayOfPersonsV1 = new People(); 
+            arrayOfPersonsV1.CreateANewPerson("Harald", "Hurtig");
             bool stillValuesInArray = false;
 
             //Act
-            People.Clear();
-            Person[] copyOfArray = People.FindAll(); //skapar en array som tilldelas den hämtade arrayen - behöve INTE NEW
+            arrayOfPersonsV1.Clear();
+            Person[] copyOfArray = arrayOfPersonsV1.FindAll(); //skapar en array som tilldelas den hämtade arrayen - behöve INTE NEW
             foreach (var Person in copyOfArray) //det är PERSONER i den kopierade (return) versionen av arrayen
             {
                 if (Person != null)
@@ -96,23 +96,21 @@ namespace XUnitTestProjectTodoIt
             Assert.True(stillValuesInArray == false);
         }
 
-
-
-
         [Fact]
         public void TestRemovePerson() //notera TÖMMER alla boxar, tar ej bort dem
         {
             //Arrange
-            People.CreateANewPerson("Moa", "Mu");
-            Person testPerson = People.CreateANewPerson("Noa", "No");   //få tag på ett id
+            People arrayOfPersonsV1 = new People(); 
+            arrayOfPersonsV1.CreateANewPerson("Moa", "Mu");
+            Person testPerson = arrayOfPersonsV1.CreateANewPerson("Noa", "No");   //få tag på ett id
             int testId = testPerson.PersonalId;
-            People.CreateANewPerson("Orvar", "Or");
+            arrayOfPersonsV1.CreateANewPerson("Orvar", "Or");
 
             //Act 
-            People.RemovePerson(testId);
+            arrayOfPersonsV1.RemovePerson(testId);
 
             //Asset
-            Assert.Null(People.FindById(testId));
+            Assert.Null(arrayOfPersonsV1.FindById(testId));
         }
 
     }

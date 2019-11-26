@@ -1,4 +1,5 @@
 ﻿namespace TodoIt.Data
+
 {
     public class TodoSequencer
     {

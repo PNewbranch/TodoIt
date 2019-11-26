@@ -1,7 +1,6 @@
 ﻿using TodoIt.Data;
 using Xunit;
 
-
 namespace XUnitTestProjectTodoIt
 {
     public class TestPersonSeguencer

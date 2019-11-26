@@ -3,7 +3,6 @@ using Xunit;
 //using System.Collections.Generic;
 //using System.Text;
 
-
 namespace XUnitTestProjectTodoIt
 {
     public class TestTodoSequencer

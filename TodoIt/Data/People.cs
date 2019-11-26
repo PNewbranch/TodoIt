@@ -6,48 +6,45 @@ namespace TodoIt.Data
 
     public class People
     {
+        private static Person[] arrayOfPersons = new Person[0]; //skall senare kunna bytas ut av en Databas, så BARA denna får vara static
 
-        private static Person[] arrayOfPersons = new Person[0];
-
-        public static int Size()
+        public int Size() //för att man skall slippa "STATIC" så måste man skapa ett OBJEKT i Implementering och TESTER 
         {
             return arrayOfPersons.Length;
         }
 
-        public static Person[] FindAll()
+        public Person[] FindAll() 
         {
             return arrayOfPersons;
         }
 
-        public static Person FindById(int findPersonId)
+        public Person FindById(int findPersonId)
         {
-            foreach (var Person in arrayOfPersons)
+            foreach (var person in arrayOfPersons)
             {
-                if (Person.PersonalId == findPersonId)
-                    return Person;
+                if (person.PersonalId == findPersonId)
+                    return person;
             }
             return null;
         }
 
-        public static Person CreateANewPerson(string firstName, string lastName)        //skaper en ny person, lägg till personen i personarrayen, RETURN personen
+        public Person CreateANewPerson(string firstName, string lastName) 
         {
             Person person = new Person(firstName, lastName);                            //skapa person, använd nya id:
             Person[] arrayOfPersonsCopy = new Person[arrayOfPersons.Length + 1];        //skapa en array som är en "box" större
             Array.Copy(arrayOfPersons, arrayOfPersonsCopy, arrayOfPersons.Length);      //kopiera över gamla arrayen (finns flera overloads)
-
             arrayOfPersonsCopy[arrayOfPersonsCopy.Length - 1] = person;                 //lägg till nyligen skapade personen - sista platsen skall vara tom
-            arrayOfPersons = arrayOfPersonsCopy;  //funkar detta? måste jag inte förstora originalarrayen                                       //här SKRIVER VI ÖVER - ej kopierar
-            return person;                                                              //return arrayOfPersons[arrayOfPersons.Length - 1]; //ger samma som den till vänster
+            arrayOfPersons = arrayOfPersonsCopy;  //varför måste jag inte förstora originalarrayen (SKRIVER VI ÖVER - ej kopierar)
+            return person;
         }
 
-        public static void Clear() //void = ingen RETURN
+        public void Clear() 
         {
-            Array.Clear(arrayOfPersons, 0, arrayOfPersons.Length);  //resnar arrayens boxar
-            PersonSequencer.ResetPersonId();                        //nollställer ID-räknaren 
+            Array.Clear(arrayOfPersons, 0, arrayOfPersons.Length);
+            PersonSequencer.ResetPersonId();
         }
 
-
-        public static void RemovePerson(int personId)
+        public void RemovePerson(int personId)
         {
             int counter = 0;
             bool exists = false;
@@ -65,8 +62,8 @@ namespace TodoIt.Data
             }
 
             if (exists) {
-                Array.Copy(People.arrayOfPersons, 0, newArray, 0, counter);
-                Array.Copy(People.arrayOfPersons, counter+1, newArray, counter, People.arrayOfPersons.Length-counter-1);
+                Array.Copy(People.arrayOfPersons, 0, newArray, 0, counter); //kopiera det före
+                Array.Copy(People.arrayOfPersons, counter+1, newArray, counter, People.arrayOfPersons.Length-counter-1); //kopiera det efter
                 arrayOfPersons = newArray; //Skriver över
             }
         }
