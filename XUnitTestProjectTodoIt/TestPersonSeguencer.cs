@@ -5,7 +5,6 @@ namespace XUnitTestProjectTodoIt
 {
     public class TestPersonSeguencer
     {
-
         [Fact]
         public void IncreasePersonSequencer()
         {

@@ -7,7 +7,6 @@ namespace XUnitTestProjectTodoIt
 {
     public class TestTodo
     {
-
         [Fact]
         public void CreateTodoOK() //
         {
@@ -20,7 +19,6 @@ namespace XUnitTestProjectTodoIt
             //Asset
             Assert.NotNull(testTodo); //verifiera att testpersonen skapat
         }
-
 
     }
 }

@@ -45,24 +45,6 @@ namespace TodoIt.Data
             TodoSequencer.ResetTodoId();
         }
 
-        //public static Todo[] FindByDoneStatus()
-        //{
-        //    Todo[] newArray = new Todo[arrayOfTodoItems.Length]; //utgå från en TVÅ lika stora arrayer - arrayen måste skapas UTANFÖR eventuella loopar så att den kan nås
-
-        //    int copyCounter = 0;
-        //    for (int i = 0; i < arrayOfTodoItems.Length; i++)
-        //    {
-        //        if (arrayOfTodoItems[i].done == true)
-        //        {
-        //            newArray[copyCounter] = arrayOfTodoItems[i]; //flytta över den hittade, börja på 0
-        //            copyCounter++; //förbered för nästa överflytt
-        //        }
-        //    }
-        //    Todo[] arrayToReturn = new Todo[copyCounter]; //skapa en anpassad array (lika stor som antal objekt)
-        //    Array.Copy(newArray, 0, arrayToReturn, 0, copyCounter); //kopiera de överflyttade till nya anpassade arrayen
-        //    return arrayToReturn;
-        //}
-
         public Todo[] FindByStatus(bool status)
         {
             Todo[] newArray = new Todo[arrayOfTodoItems.Length]; //utgå från en TVÅ lika stora arrayer - arrayen måste skapas UTANFÖR eventuella loopar så att den kan nås
@@ -118,6 +100,32 @@ namespace TodoIt.Data
             return arrayToReturn;
         }
 
+
+
+
+
+        public Todo[] FindUnassignedTodoItems()
+        {
+            Todo[] newArray = new Todo[arrayOfTodoItems.Length]; //utgå från en TVÅ lika stora arrayer - arrayen måste skapas UTANFÖR eventuella loopar så att den kan nås
+
+            int copyCounter = 0;
+            for (int i = 0; i < arrayOfTodoItems.Length; i++) //kör igenom hela originalarrayen
+            {
+                if (arrayOfTodoItems[i].assignee == null)
+                {
+                    newArray[copyCounter] = arrayOfTodoItems[i]; //vid träff flyttas denna över till kopian (börja på pos 0)
+                    copyCounter++; //förbered för nästa överflytt
+                }
+            }
+
+            Todo[] arrayToReturn = new Todo[copyCounter]; //skapa en anpassad array (lika stor som antal objekt)
+            Array.Copy(newArray, 0, arrayToReturn, 0, copyCounter); //kopiera de överflyttade till nya anpassade arrayen
+            return arrayToReturn;
+        }
+
+
+
+
         public void RemoveTodo(int todoId)
         {
             int counter = 0;
@@ -137,8 +145,8 @@ namespace TodoIt.Data
 
             if (exists)
             {
-                Array.Copy(TodoItems.arrayOfTodoItems, 0, newArray, 0, counter);
-                Array.Copy(TodoItems.arrayOfTodoItems, counter + 1, newArray, counter, TodoItems.arrayOfTodoItems.Length - counter - 1);
+                Array.Copy(TodoItems.arrayOfTodoItems, 0, newArray, 0, counter); //kopiera det före (då samma längd)
+                Array.Copy(TodoItems.arrayOfTodoItems, counter + 1, newArray, counter, TodoItems.arrayOfTodoItems.Length - counter - 1); //kopiera in ihoptryckt version i ny array som är en box kortare 
                 arrayOfTodoItems = newArray; //Skriver över
             }
         }

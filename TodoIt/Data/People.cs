@@ -38,7 +38,7 @@ namespace TodoIt.Data
             return person;
         }
 
-        public void Clear() 
+        public void Clear()
         {
             Array.Clear(arrayOfPersons, 0, arrayOfPersons.Length);
             PersonSequencer.ResetPersonId();
@@ -62,8 +62,8 @@ namespace TodoIt.Data
             }
 
             if (exists) {
-                Array.Copy(People.arrayOfPersons, 0, newArray, 0, counter); //kopiera det före
-                Array.Copy(People.arrayOfPersons, counter+1, newArray, counter, People.arrayOfPersons.Length-counter-1); //kopiera det efter
+                Array.Copy(People.arrayOfPersons, 0, newArray, 0, counter); //kopiera det före (då samma längd)
+                Array.Copy(People.arrayOfPersons, counter+1, newArray, counter, People.arrayOfPersons.Length-counter-1); //kopiera in ihoptryckt version i ny array som är en box kortare
                 arrayOfPersons = newArray; //Skriver över
             }
         }

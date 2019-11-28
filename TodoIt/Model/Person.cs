@@ -1,7 +1,7 @@
 ﻿using System;
 using TodoIt.Data;
 
-//kontrollera att testprogrammet har DEPENDENCIES satt till det det testar (i detta fall "TodoIt" bockas för Add Dependencies)
+//kontrollera att testprogrammet har DEPENDENCIES satt till det det testar (i detta fall "TodoIt" bockas i för Add Dependencies)
 
 namespace TodoIt.Model
 {
@@ -39,7 +39,7 @@ namespace TodoIt.Model
             }
         }
 
-        public string LastName //medod för anpassad get/set
+        public string LastName
         {
             get
             {
@@ -64,7 +64,6 @@ namespace TodoIt.Model
             FirstName = firstName;                                      //STOR förstabokstav = använder PROPERTYS-metoden 
             LastName = lastName;
         }
-
 
     }
 }

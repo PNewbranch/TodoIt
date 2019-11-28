@@ -7,7 +7,6 @@ namespace XUnitTestProjectTodoIt
 {
     public class TestTodoSequencer
     {
-
         [Fact]
         public void IncreaseTodoSequencer() //vi testar klassen TodoSequencer, att räkna upp
         {

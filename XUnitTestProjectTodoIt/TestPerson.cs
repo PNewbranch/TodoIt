@@ -6,7 +6,6 @@ namespace XUnitTestProjectTodoIt
 {
     public class TestPerson
     {
-
         [Fact]
         public void TestCreatePersonOK() //test constructor
         {

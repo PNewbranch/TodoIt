@@ -6,12 +6,12 @@ namespace XUnitTestProjectTodoIt
 {
     public class TestPeople
     {
+        public People arrayOfPersonsV1 = new People(); //Skapa en ett OBJEKT så att man INTE går mot KLASSEN (förbered för DB-koppling) 
 
         [Fact]
         public void TestSize()
         {
             //Arrange
-            People arrayOfPersonsV1 = new People(); //Skapa en ett OBJEKT så att man INTE går mot KLASSEN (förbered för DB-koppling) 
             int sizeBefore = arrayOfPersonsV1.Size();
             arrayOfPersonsV1.CreateANewPerson("Adan", "Adams");
             arrayOfPersonsV1.CreateANewPerson("Carina", "Ceder");
@@ -27,7 +27,6 @@ namespace XUnitTestProjectTodoIt
         public void TestFindAll()
         {
             //Arrange
-            People arrayOfPersonsV1 = new People(); 
             int size = 0;
             arrayOfPersonsV1.CreateANewPerson("David", "Duk");
             arrayOfPersonsV1.CreateANewPerson("Emma", "Hemma");
@@ -44,7 +43,6 @@ namespace XUnitTestProjectTodoIt
         public void TestFindById()
         {
             //Arrange
-            People arrayOfPersonsV1 = new People(); 
             arrayOfPersonsV1.CreateANewPerson("Fia", "Flitig");
             Person testPerson = arrayOfPersonsV1.CreateANewPerson("Emma", "Hemma");   //få tag på ett id
             int testId = testPerson.PersonalId;
@@ -61,7 +59,6 @@ namespace XUnitTestProjectTodoIt
         public void TestCreateANewPerson()
         {
             //Arrange
-            People arrayOfPersonsV1 = new People(); 
             int arrayLengthBefore = arrayOfPersonsV1.Size();
 
             //Act
@@ -76,7 +73,6 @@ namespace XUnitTestProjectTodoIt
         public void TestClear() //notera TÖMMER alla boxar, tar ej bort dem
         {
             //Arrange
-            People arrayOfPersonsV1 = new People(); 
             arrayOfPersonsV1.CreateANewPerson("Harald", "Hurtig");
             bool stillValuesInArray = false;
 
@@ -100,7 +96,6 @@ namespace XUnitTestProjectTodoIt
         public void TestRemovePerson() //notera TÖMMER alla boxar, tar ej bort dem
         {
             //Arrange
-            People arrayOfPersonsV1 = new People(); 
             arrayOfPersonsV1.CreateANewPerson("Moa", "Mu");
             Person testPerson = arrayOfPersonsV1.CreateANewPerson("Noa", "No");   //få tag på ett id
             int testId = testPerson.PersonalId;
